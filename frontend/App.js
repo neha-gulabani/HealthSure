@@ -10,16 +10,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import "react-native-gesture-handler";
 import TopNav from "./components/topnav";
+import BottomNav from "./components/BottomNav";
 
 const Stack = createStackNavigator();
 const App = () => {
   return (
-    // <Router>
-    //   <Switch>
-    //     <Route path="/signUp" component={<SignUp />} />
-    //     <Route path="/login" component={<Login />} />
-    //   </Switch>
-    // </Router>
     <>
       <NavigationContainer>
         <Stack.Navigator>

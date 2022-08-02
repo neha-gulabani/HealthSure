@@ -11,6 +11,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import "react-native-gesture-handler";
 import TopNav from "./components/topnav";
 import BottomNav from "./components/BottomNav";
+import MoodDashboard from "./page/MoodDasboard";
+import MoodQuiz from "./page/MoodQuiz";
+import MoodReport from "./page/MoodReport";
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -22,6 +25,21 @@ const App = () => {
             name="Main"
             component={Main}
             options={{ title: "Main" }}
+          />
+          <Stack.Screen
+            name="MoodDashboard"
+            component={MoodDashboard}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="MoodQuiz"
+            component={MoodQuiz}
+            options={{ title: "Mood Quiz" }}
+          />
+          <Stack.Screen
+            name="MoodReport"
+            component={MoodReport}
+            options={{ headerShown: false }}
           />
           <Stack.Screen
             name="Login"

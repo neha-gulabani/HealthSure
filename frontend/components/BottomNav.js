@@ -1,12 +1,8 @@
 import React from "react";
 import {
   StyleSheet,
-  Text,
   View,
-  ImageBackground,
   Image,
-  TextInput,
-  Button,
   TouchableOpacity,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -14,22 +10,23 @@ import { useNavigation } from "@react-navigation/native";
 const BottomNav = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <View style={styles.profile}>
+  <View style={styles.container}>
+    <View style={styles.home}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Profile");
+            navigation.navigate("Home");
           }}
+          hitSlop={{top:30, bottom:30, left:30,right:30}}
         >
           <Image
-            source={require("../assets/profilepic.png")}
-            style={{ height: 35, width: null }}
+            source={require("../assets/homepic.png")}
+            style={{ height: 31, width: null }}
             resizeMode="contain"
             resizeMethod="resize"
           />
         </TouchableOpacity>
       </View>
-
+      
       <View style={styles.bot}>
         <TouchableOpacity
           onPress={() => {
@@ -44,16 +41,15 @@ const BottomNav = () => {
           />
         </TouchableOpacity>
       </View>
-
-      <View style={styles.home}>
+      <View style={styles.profile}>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("Profile");
           }}
         >
           <Image
-            source={require("../assets/homepic.png")}
-            style={{ height: 31, width: null }}
+            source={require("../assets/profilepic.png")}
+            style={{ height: 35, width: null }}
             resizeMode="contain"
             resizeMethod="resize"
           />
@@ -67,26 +63,26 @@ export default BottomNav;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: "8%",
-    backgroundColor: "white",
-    top: "92%",
-    justifyContent: "flex-end",
+    width:"100%",
+    height:"8%",
+    backgroundColor:"white",
+    top:"5%",
+    flexDirection:'row',
+    flexWrap:'wrap',
+    alignItems:'flex-start'
   },
 
   profile: {
-    paddingLeft: 280,
-    flex: 1,
-    paddingTop: 10,
+    flex:1,
+    width:'33%',
   },
 
   bot: {
-    flex: 1,
-    paddingTop: 1.5,
+    flex:1,
+    width:'33%',
   },
   home: {
-    flex: 1,
-    paddingRight: 280,
-    paddingBottom: 50,
+    flex:1,
+    width:'33%',
   },
 });

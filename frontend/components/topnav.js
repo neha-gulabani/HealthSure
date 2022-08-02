@@ -9,6 +9,7 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { StackNavigator } from "react-navigation";
 import { useNavigation } from "@react-navigation/native";
 
 const TopNav = () => {
@@ -50,6 +51,8 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "12%",
     backgroundColor: "white",
+    zIndex:10,
+    display:"flex"
   },
 
   setting: {

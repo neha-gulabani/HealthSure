@@ -9,10 +9,21 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { auth } from "../firebase";
+import Axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  
+  const logined = () => {
+    Axios.post("http://localhost19006/login", {
+      email: email,
+      password: password,
+    }).then((response) => {
+      console.log(response)
+    });
+  };
 
   return (
     <View>
@@ -48,7 +59,13 @@ const Login = () => {
             />
           </View>
           <View style={{ justifyContent: "center", flex: 1, padding: 30 }}>
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity 
+              style={styles.loginBtn}
+              onPress={() => {
+                handleLogin();
+                logined();
+                // navigation.navigate("Home");
+              }}>
               <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>
           </View>

@@ -2,14 +2,17 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const mysql = require("mysql");
-const port = 3306;
+const cors = require("cors");
+const port = 19006;
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 const db = mysql.createConnection({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "password",
   database: "healthsure",
 });
 
@@ -22,10 +25,3 @@ db.connect((err) => {
 });
 
 global.db = db;
-
-require("./routes/main")(app);
-
-app.set("views", __dirname + "/views");
-app.set("view engine", "ejs");
-app.engine("html", require("ejs").renderFile);
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));

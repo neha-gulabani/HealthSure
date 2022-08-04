@@ -9,8 +9,21 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import TopNav from "../components/topnav";
 import BottomNav from "../components/BottomNav";
+import Axios from 'axios';
 
 const MoodQuiz = () => {
+  const [mood, setMood] = useState("");
+  const [planet, setPlanet] = useState("");
+
+  const mood_emos = () => {
+    Axios.post("http://localhost19006/mood_chosen", {
+      mood: mood,
+      planet: planet,
+    }).then((response) => {
+      console.log(response)
+    });
+  };
+  
   const navigation = useNavigation();
   return (
     <View style={styles.container}>

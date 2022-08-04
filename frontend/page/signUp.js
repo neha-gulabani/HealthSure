@@ -11,6 +11,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Checkbox } from "react-native-paper";
+import { auth } from "../firebase";
+import Axios from "axios";
 
 const SignUp = () => {
   const [firstname, setFirstname] = useState("");
@@ -20,6 +22,19 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   let checked;
+  
+  const signed = () => {
+    Axios.post("http://localhost19006/signed", {
+      firstname: firstname,
+      lastname: lastname,
+      username: username,
+      password: password,  
+      email: email,
+      contact: contact,
+    }).then((response) => {
+      console.log(response)
+    });
+  };
 
   return (
     <ScrollView>
@@ -102,6 +117,10 @@ const SignUp = () => {
             <TouchableOpacity
               style={styles.loginBtn}
               onPress={() => {
+                onPress={() => {
+                handleSignUp();
+                signed();
+                // navigation.navigate("Home");
                 navigation.navigate("SignUp");
               }}
             >

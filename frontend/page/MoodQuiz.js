@@ -9,87 +9,73 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import TopNav from "../components/topnav";
 import BottomNav from "../components/BottomNav";
-import Axios from 'axios';
 
 const MoodQuiz = () => {
-  const [mood, setMood] = useState("");
-  const [planet, setPlanet] = useState("");
-
-  const mood_emos = () => {
-    Axios.post("http://localhost19006/mood_chosen", {
-      mood: mood,
-      planet: planet,
-    }).then((response) => {
-      console.log(response)
-    });
-  };
-  
   const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <TopNav />
-
+      <TopNav/>
       <Text style={styles.text}>Choose your mood</Text>
 
       <View style={styles.right}>
+        
         <TouchableOpacity>
           <ImageBackground
-            source={require("../assets/anger.jpg")}
-            style={{ height: 140, width: 110, marginBottom: 20 }}
-            imageStyle={{ borderRadius: 10 }}
-          >
-            <Text style={styles.imagetext}>Anger</Text>
-          </ImageBackground>
+                source={require("../assets/anger.jpg")}
+                style={{height:140,width:110, marginBottom:20}}
+                imageStyle={{borderRadius:10}}>
+                <Text style={styles.imagetext}>Anger</Text>
+           </ImageBackground>
         </TouchableOpacity>
+
 
         <TouchableOpacity style={styles.emotionbtn}>
           <ImageBackground
             source={require("../assets/surprise.jpg")}
-            style={{ height: 140, width: 110, marginBottom: 20 }}
-            imageStyle={{ borderRadius: 10 }}
-          >
+            style={{height:140,width:110,marginBottom:20}}
+            imageStyle={{borderRadius:10}}>
             <Text style={styles.imagetext}>Surprise</Text>
           </ImageBackground>
         </TouchableOpacity>
 
+
         <TouchableOpacity style={styles.emotionbtn}>
           <ImageBackground
             source={require("../assets/sadness.jpg")}
-            style={{ height: 140, width: 110, marginBottom: 20 }}
-            imageStyle={{ borderRadius: 10 }}
-          >
+            style={{height:140,width:110,marginBottom:20}}
+            imageStyle={{borderRadius:10}}>
             <Text style={styles.imagetext}>Sadness</Text>
           </ImageBackground>
         </TouchableOpacity>
       </View>
 
+
       <View style={styles.left}>
         <TouchableOpacity>
           <ImageBackground
             source={require("../assets/Happiness.jpg")}
-            style={{ height: 140, width: 110, marginBottom: 20 }}
-            imageStyle={{ borderRadius: 10 }}
-          >
+            style={{height:140,width:110,marginBottom:20}}
+            imageStyle={{borderRadius:10}}>
             <Text style={styles.imagetext}>Happiness</Text>
           </ImageBackground>
         </TouchableOpacity>
 
+
         <TouchableOpacity>
           <ImageBackground
             source={require("../assets/disgust.jpg")}
-            style={{ height: 140, width: 110, marginBottom: 20 }}
-            imageStyle={{ borderRadius: 10 }}
-          >
+            style={{height:140,width:110,marginBottom:20}}
+            imageStyle={{borderRadius:10}}>
             <Text style={styles.imagetext}>Disgust</Text>
           </ImageBackground>
         </TouchableOpacity>
 
+
         <TouchableOpacity>
           <ImageBackground
             source={require("../assets/fear.jpg")}
-            style={{ height: 140, width: 110, marginBottom: 20 }}
-            imageStyle={{ borderRadius: 10 }}
-          >
+            style={{height:140,width:110,marginBottom:20}}
+            imageStyle={{borderRadius:10}}>
             <Text style={styles.imagetext}>Fear</Text>
           </ImageBackground>
         </TouchableOpacity>
@@ -121,10 +107,11 @@ const styles = StyleSheet.create({
   },
   imagetext: {
     fontWeight: "bold",
+    fontFamily:'Monospace',
     color: "black",
     fontSize: 13,
     position: "absolute",
-    justifyContent: "center",
+    alignSelf:'center',
     top: 110,
     left: 33,
     right: 10,

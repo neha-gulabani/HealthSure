@@ -1,48 +1,51 @@
-import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  Image,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  Touchable,
-  ScrollView,
-} from "react-native";
+import React,{useState} from "react";
+import { StyleSheet, Text, View,ScrollView } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import TopNav from "../components/topnav";
-import BottomNav from "../components/BottomNav";
 import { Dimensions } from "react-native";
 import {
   LineChart,
-  BarChart,
-  PieChart,
   ProgressChart,
-  ContributionGraph,
-  StackedBarChart,
 } from "react-native-chart-kit";
+import{Calendar,} from 'react-native-calendars';
+
+
+function* yLabel() {
+  yield* ['Anger', 'Fear', 'Disgust', 'Sad','Surprise','Happy'];
+};
+
+let Mood = new Array(6);
+Mood[1] = "Anger";
+Mood[2] = "Fear";
+Mood[3] = "Disgust";
+Mood[4] = "Sad";
+Mood[5] = "Surprised";
+Mood[6] = "Happy";
 
 const MoodReport = () => {
   const screenWidth = Dimensions.get("window").width;
   const navigation = useNavigation();
   const { colors } = useTheme();
+  const yLabelIterator = yLabel();
   const data = {
-    labels: ["Happy", "Sad", "Anger", "Surprised", "Disgust", "Fear"],
+    labels: ["Mon", "Tue", "Wed", "Fri", "Sat", "Sun"],
     datasets: [
       {
-        data: [1, 2, 3, 4, 5, 6, 7],
-        color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-        strokeWidth: 2, // optional
+        data: [
+          Mood.indexOf("Anger"),
+          Mood.indexOf("Happy"),
+          Mood.indexOf("Fear"),
+          Mood.indexOf("Disgust"),
+          Mood.indexOf("Sad"),
+          Mood.indexOf("Surprised"),
+        ],
       },
     ],
-    legend: ["Your emotions on each day"], // optional
   };
   const data2 = {
-    labels: ["Happy", "Sad", "Anger", "Surprised", "Disgust", "Fear"], // optional
-    data: [0.4, 0.6, 0.8, 0.2, 0.5, 0.8],
-    colors: ["red", "yellow", "blue", "green", "pink", "darkorange"],
+    labels: ["Anger", "Surprise", "Happy", "Disgust", "Sad", "Fear"],
+    data: [0.2, 0.6, 0.9, 0.2, 0.1, 0.3],
+    colors: ["red", "orange", "yellow", "green", "blue", "purple"],
   };
   const chartConfig = {
     backgroundGradientFromOpacity: 0.5,
@@ -54,108 +57,61 @@ const MoodReport = () => {
     decimalPlaces: 2,
     color: (opacity = 1, _index) => `rgba(255,255,255,${opacity})`,
   };
-  const commitsData = [
-    { date: "2022-08-02", count: 5 },
-    { date: "2022-08-03", count: 10 },
-    { date: "2022-08-09", count: 14 },
-    { date: "2017-01-05", count: 4 },
-    { date: "2017-01-06", count: 5 },
-    { date: "2017-01-30", count: 2 },
-    { date: "2017-01-31", count: 3 },
-    { date: "2017-03-01", count: 2 },
-    { date: "2017-04-02", count: 4 },
-    { date: "2017-03-05", count: 2 },
-    { date: "2017-02-30", count: 4 },
-  ];
+  const [current,setCurrent]=useState('2022-08-04')
   return (
-    <View style={styles.moodreprt}>
+    <View style={styles.container}>
       <TopNav />
-      <View style={styles.scroll}>
-        <ScrollView>
-          <View
-            style={{
-              paddingTop: 0,
-              zIndex: 10,
-            }}
-          >
-            <View style={styles.lingraph}>
-              <View style={styles.toppart}>
-                <Text style={styles.title}>Your weekly report</Text>
-                <View style={styles.image}>
-                  <Image source={require("../assets/quizicon.png")}></Image>
-                </View>
-              </View>
-              <LineChart
-                data={data}
-                width={Dimensions.get("window").width}
-                height={220}
-                yAxisLabel="Day "
-                yAxisSuffix=""
-                yAxisInterval={1} // optional, defaults to 1
-                chartConfig={{
-                  backgroundColor: "white",
-                  backgroundGradientFrom: "white",
-                  backgroundGradientTo: "white",
-                  decimalPlaces: 0, // optional, defaults to 2dp
-                  color: (opacity = 1) => `rgba(0, 64, 255, ${opacity})`,
-                  labelColor: (opacity = 1) => `rgba(0, 64, 255, ${opacity})`,
-                  style: {
-                    borderRadius: 16,
-                  },
-                  propsForDots: {
-                    r: "6",
-                    strokeWidth: "2",
-                    stroke: "#4000ff",
-                  },
-                }}
-                bezier
-                style={{
-                  marginVertical: 8,
-                  borderRadius: 10,
-                  paddingBottom: 10,
-                }}
-              />
-              <ProgressChart
-                data={data2}
-                width={screenWidth}
-                height={220}
-                strokeWidth={16}
-                radius={32}
-                chartConfig={chartConfig}
-                hideLegend={false}
-                style={{}}
-                withCustomBarColorFromData={true}
-              />
-              <Text style={styles.titlemonth}>
-                Month in pixels : {new Date().getMonth() + 1}
-              </Text>
-              <ContributionGraph
-                values={commitsData}
-                endDate={new Date("2022-09-01")}
-                numDays={32}
-                width={screenWidth}
-                height={220}
-                showMonthLabels={false}
-                gutterSize={23}
-                horizontal={false}
-                // getMonthLabel={new Date().getMonth() + 1}
-                chartConfig={{
-                  backgroundGradientFrom: "white",
-                  backgroundGradientFromOpacity: 0.5,
-                  backgroundGradientTo: "white",
-                  backgroundGradientToOpacity: 1,
-                  color: (opacity = 1) => `rgba(100, 100, 26, ${opacity})`,
-                  strokeWidth: 2, // optional, default 3
-                  barPercentage: 0.5,
-
-                  propsForLabels: { fill: colors.text },
-                }}
-              />
-            </View>
-          </View>
-        </ScrollView>
-        <BottomNav />
+      {/*Title Box*/}
+      <ScrollView>
+      <View style={styles.titleBox}>
+        <Text style={styles.title}>Your progress charts</Text>
       </View>
+      {/*Line chart*/}
+      <Text style={styles.subtitle}>Weekly Mood Chart</Text>
+      <View>
+        <LineChart
+          data={data}
+          segments={5}
+          width={320}
+          height={200}
+          style={{ alignSelf: "center" }}
+          formatYLabel={() => yLabelIterator.next().value}
+          chartConfig={{
+            backgroundColor: "white",
+            backgroundGradientFrom: "white",
+            backgroundGradientTo: "white",
+            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          }}
+        />
+      </View>
+      {/*Progress chart*/}
+      <Text style={styles.subtitle}>Progress Chart</Text>
+      <ProgressChart
+        data={data2}
+        width={Dimensions.get("screen").width}
+        height={220}
+        strokeWidth={16}
+        radius={32}
+        chartConfig={chartConfig}
+        hideLegend={false}
+        withCustomBarColorFromData={true}
+      />
+      <Text style={styles.subtitle}>Month in pixels</Text>
+      <Calendar
+            current={current}
+            key={current}
+            disableMonthChange={true}
+            markedDates={{
+              '2022-07-04':{selected:true,selectedColor:'orange'},
+              '2022-08-01':{selected:true,selectedColor:'purple'},
+              '2022-08-02':{selected:true,selectedColor:'blue'},
+              '2022-08-03':{selected:true,selectedColor:'yellow'},
+              '2022-08-04':{selected:true,selectedColor:'green'},
+
+            }}
+      />
+      </ScrollView>
     </View>
   );
 };
@@ -163,44 +119,38 @@ const MoodReport = () => {
 export default MoodReport;
 
 const styles = StyleSheet.create({
-  moodreprt: {
-    paddingTop: 15,
+  container: {
     flex: 1,
+    backgroundColor: "#ffffff",
+  },
+  titleBox: {
+    backgroundColor: "#6698FF",
+    height: 100,
+    borderBottomLeftRadius: 100,
+    borderBottomRightRadius: 100,
   },
   title: {
-    fontWeight: "bold",
-    alignSelf: "stretch",
-    fontSize: 25,
-    backgroundColor: "white",
-    paddingTop: 34,
-    paddingLeft: 20,
-    width: "50%",
-  },
-  titlemonth: {
-    fontWeight: "bold",
-    alignSelf: "center",
-    fontSize: 25,
-    backgroundColor: "white",
+    fontFamily: "Monospace",
+    fontSize: 32,
+    color: "#FFFFFF",
+    marginLeft: 25,
+    paddingBottom: 10,
     paddingTop: 10,
   },
-  toppart: {
-    backgroundColor: "transparent",
-    height: "19%",
+  subtitle: {
+    fontFamily: "Monospace",
+    fontSize: 28,
+    color: "#000000",
+    alignSelf: "center",
+    paddingBottom: 20,
+    paddingTop: 20,
   },
-  image: {
-    height: "50%",
-    width: "40%",
-  },
-  lingraph: {
-    paddingBottom: 150,
-  },
-  scroll: {
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    // flex:1,
-    // flexBasis:570,
-    // flexGrow:0
-  },
+  titlemonth:{
+    fontFamily: "Monospace",
+    fontSize: 28,
+    color: "#000000",
+    alignSelf: "center",
+    paddingBottom: 20,
+    paddingTop: 20,
+  }
 });

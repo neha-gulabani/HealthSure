@@ -1,33 +1,34 @@
 import React,{useState} from 'react';
-import {View,
-        Text,
-        StyleSheet,
-        CheckBox,
-        ScrollView,
-    } from 'react-native';
+import {View,Text,StyleSheet,CheckBox,ScrollView} from 'react-native';
+//importing the top navigation bar to appear for easier navigation
 import TopNav from '../components/topNav';
+//importing the bottom navigation bar to appear for easier navigation
 import BottomNav from '../components/BottomNav';
 
 const History =()=>{
+    //initialising the states for checkbox
     const [isnotSelected,isSelected]=useState(false);
     return(
         <View style={styles.container}>
+            {/*Top navigation bar*/}
             <TopNav/>
              <ScrollView>
-                {/* title */}
+                {/*Title*/}
                 <Text style={styles.historyTitle}>History Records</Text>
-                {/* box for history records*/}
+                {/*Form for history records*/}
                 <View style={styles.formBox}>
-                    {/* gender text and box */}
+                    {/*Gender text and box */}
                     <Text style={styles.inputText}>Gender:</Text>
                     <View style={styles.box}>
                         <Text style={styles.inputText}>Female</Text>
                     </View>
+
                     {/* Allergies text and box */}
                     <Text style={styles.inputText}>Allergy:</Text>
                     <View style={styles.box}>
                         <Text style={styles.inputText}>Dust, Dust mites</Text>
                     </View>
+
                     {/* Vaccination text and box */}
                     <Text style={styles.inputText}>Recent vaccination:</Text>
                     <View style={styles.boxVaccination}>
@@ -35,26 +36,28 @@ const History =()=>{
                         <Text style={styles.inputText}>06/12/2021- Gardasil</Text>
                         <Text style={styles.inputText}>06/06/2021- Gardasil</Text>
                     </View>
+
                     {/* Illness or chronic disease text and check box*/}
                     <Text style={styles.illnessText}>Have you suffered or suffering from any illness from the list below?</Text>
                         <CheckBox value={isnotSelected} style={styles.checkBox}/>
-                        <Text style={styles.inputText}>Arthritis</Text>
+                            <Text style={styles.inputText}>Arthritis</Text>
                         <CheckBox value={isnotSelected} style={styles.checkBox} />
-                        <Text style={styles.inputText}>Cancer</Text>
+                            <Text style={styles.inputText}>Cancer</Text>
                         <CheckBox value={isSelected} style={styles.checkBox} />
-                        <Text style={styles.inputText}>Chickenpox</Text>
+                            <Text style={styles.inputText}>Chickenpox</Text>
                         <CheckBox value={isnotSelected} style={styles.checkBox}/>
-                        <Text style={styles.inputText}>Diabetes</Text>
+                            <Text style={styles.inputText}>Diabetes</Text>
                         <CheckBox value={isSelected} style={styles.checkBox}/>
-                        <Text style={styles.inputText}>Dengue Fever</Text>
+                            <Text style={styles.inputText}>Dengue Fever</Text>
                         <CheckBox value={isnotSelected} style={styles.checkBox}/>
-                        <Text style={styles.inputText}>Heart Disease</Text>
+                            <Text style={styles.inputText}>Heart Disease</Text>
                         <CheckBox value={isnotSelected} style={styles.checkBox}/>
-                        <Text style={styles.inputText}>High Blood Pressure</Text>
+                            <Text style={styles.inputText}>High Blood Pressure</Text>
                         <CheckBox value={isnotSelected} style={styles.checkBox}/>
-                        <Text style={styles.inputText}>Thyroid disorders</Text>
+                            <Text style={styles.inputText}>Thyroid disorders</Text>
                         <CheckBox value={isnotSelected} style={styles.checkBox}/>
-                        <Text style={styles.inputText}>None</Text>
+                            <Text style={styles.inputText}>None</Text>
+
                     {/* Medication text and box */}
                     <Text style={styles.inputText}>Medication followed:</Text>
                     <View style={styles.box}>
@@ -62,12 +65,14 @@ const History =()=>{
                     </View>
                 </View>
             </ScrollView> 
+            {/*Bottom navigation bar*/}
           <BottomNav/>
         </View>
 
     );
 };
 
+//Style Sheet
 const styles= StyleSheet.create({
     container:{
         flex:1,

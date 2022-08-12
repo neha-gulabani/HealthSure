@@ -9,22 +9,46 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { auth } from "../firebase";
 import Axios from "axios";
 
 const Login = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
-  const logined = () => {
-    Axios.post("http://localhost19006/login", {
-      email: email,
-      password: password,
-    }).then((response) => {
-      console.log(response)
+  // Firebase authentication
+  const handleLogin = () => {
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log('Logged in with:', user.email);
+      })
+      .catch(error => alert(error.message))
+  }
+  
+  // Search for user in the backend database
+  const logined = async () => {
+    console.log(email);
+    await Axios.post("http://192.168.18.6:3001/logined", {
+      email: email,  
+      password: password},
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((data) => {
+        console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
     });
   };
-
+  
+  const navigation = useNavigation();
   return (
     <View>
       <ImageBackground
@@ -64,7 +88,7 @@ const Login = () => {
               onPress={() => {
                 handleLogin();
                 logined();
-                // navigation.navigate("Home");
+                navigation.navigate("Home");
               }}>
               <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>

@@ -55,7 +55,6 @@ app.post("/signed", function (req, res) {
               if (err) {
                   return console.error(err.message);
               } else {
-                  // res.send("Created new user");
                   res.render({ users: result });
                   console.log("User added to database");
               }

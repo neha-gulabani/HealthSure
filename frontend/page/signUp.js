@@ -141,7 +141,6 @@ const SignUp = () => {
             <TouchableOpacity
               style={styles.loginBtn}
               onPress={() => {
-                onPress={() => {
                 handleSignUp();
                 signed();
                 navigation.navigate("Home");

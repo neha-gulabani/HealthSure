@@ -10,6 +10,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { Checkbox } from "react-native-paper";
 import { auth } from "../firebase";
 import Axios from "axios";
@@ -23,19 +24,42 @@ const SignUp = () => {
   const [contact, setContact] = useState("");
   let checked;
   
-  const signed = () => {
-    Axios.post("http://localhost19006/signed", {
+  // Firebase authentication
+  const handleSignUp = () => {
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredentials => {
+        const user = userCredentials.user;
+        console.log(user.email);
+      })
+      .catch(error => alert(error.message))
+  }
+  
+  // Store user to backend database
+  const signed = async () => {
+    console.log(firstname);
+    await Axios.post("http://192.168.18.6:3001/signed", {
       firstname: firstname,
       lastname: lastname,
       username: username,
       password: password,  
       email: email,
-      contact: contact,
-    }).then((response) => {
-      console.log(response)
+      contact: contact},
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((data) => {
+        console.log(data);
+    })
+    .catch((err) => {
+      console.log(err);
     });
   };
 
+  const navigation = useNavigation();
   return (
     <ScrollView>
       <View>
@@ -120,8 +144,7 @@ const SignUp = () => {
                 onPress={() => {
                 handleSignUp();
                 signed();
-                // navigation.navigate("Home");
-                navigation.navigate("SignUp");
+                navigation.navigate("Home");
               }}
             >
               <Text style={styles.loginText}>Sign up</Text>

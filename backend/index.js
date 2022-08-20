@@ -56,6 +56,7 @@ app.post("/signed", function (req, res) {
                   return console.error(err.message);
               } else {
                   console.log("User successfully added to database");
+                  res.send("True");
               }
           });
       }
@@ -76,6 +77,7 @@ app.post("/logined", function (req, res) {
       } 
       else {
         console.log("Logged in");
+        res.send("True");
       }
   });
 });

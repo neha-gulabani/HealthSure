@@ -42,6 +42,9 @@ const Login = () => {
     )
       .then((data) => {
         console.log(data);
+        if (data == "True") {
+          navigation.navigate("Home");
+        }
     })
     .catch((err) => {
       console.log(err);
@@ -88,7 +91,6 @@ const Login = () => {
               onPress={() => {
                 handleLogin();
                 logined();
-                navigation.navigate("Home");
               }}>
               <Text style={styles.loginText}>LOGIN</Text>
             </TouchableOpacity>

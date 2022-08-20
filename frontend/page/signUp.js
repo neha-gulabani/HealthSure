@@ -53,6 +53,9 @@ const SignUp = () => {
     )
       .then((data) => {
         console.log(data);
+        if (data == "True") {
+          navigation.navigate("Home");
+        }
     })
     .catch((err) => {
       console.log(err);
@@ -143,7 +146,6 @@ const SignUp = () => {
               onPress={() => {
                 handleSignUp();
                 signed();
-                navigation.navigate("Home");
               }}
             >
               <Text style={styles.loginText}>Sign up</Text>

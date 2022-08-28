@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     alignItems:'flex-start'
   },
   categoryCard:{
-    width:175,
+    width:165,
     backgroundColor:'#6698FF',
     paddingTop:0,
     height:230,
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     alignItems:'flex-start'
   },
   categoryBottomCard:{
-    width:175,
+    width:165,
     backgroundColor:'#FEA3AA',
     paddingTop:0,
     height:230,

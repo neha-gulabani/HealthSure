@@ -40,7 +40,7 @@ export default function Home() {
               </View>
 
               <View style={styles.categoryCard}>
-                <TouchableOpacity onPress={() => {navigation.navigate("Mood");
+                <TouchableOpacity onPress={() => {navigation.navigate("MoodDashboard");
                   }}
                 >
                   <Image

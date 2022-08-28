@@ -14,6 +14,8 @@ import BottomNav from "./components/BottomNav";
 import MoodDashboard from "./page/MoodDasboard";
 import MoodQuiz from "./page/MoodQuiz";
 import MoodReport from "./page/MoodReport";
+import OnlineConsultation from "./page/OnlineConsultation";
+import History from "./page/History";
 
 const Stack = createStackNavigator();
 const App = () => {
@@ -61,6 +63,16 @@ const App = () => {
             name="Profile"
             component={Profile}
             options={{ title: "Profile" }}
+          />
+          <Stack.Screen
+            name="OnlineConsultation"
+            component={OnlineConsultation}
+            options={{ title: "Online Consultation" }}
+          />
+          <Stack.Screen
+            name="History"
+            component={History}
+            options={{ title: "History" }}
           />
           <Stack.Screen
             name="Home"

@@ -32,7 +32,7 @@ export default function Home() {
                     }}
                   >
                     <Image
-                      source={require("../assets/botIcon.jpg")}
+                      source={require("../assets/chatbotIcon.jpg")}
                       style={styles.categoryImages}
                     />
                     <Text style={styles.catergoryCardTitle}>Chatbot</Text>

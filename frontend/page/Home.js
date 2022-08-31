@@ -32,10 +32,10 @@ export default function Home() {
                     }}
                   >
                     <Image
-                      source={require("../assets/botIcon.png")}
+                      source={require("../assets/botIcon.jpg")}
                       style={styles.categoryImages}
                     />
-                    <Text style={styles.catergoryCardTitle}>Voice Bot</Text>
+                    <Text style={styles.catergoryCardTitle}>Chatbot</Text>
                   </TouchableOpacity>
               </View>
 
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     alignItems:'flex-start'
   },
   categoryCard:{
-    width:165,
+    width:175,
     backgroundColor:'#6698FF',
     paddingTop:0,
     height:230,
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
     alignItems:'flex-start'
   },
   categoryBottomCard:{
-    width:165,
+    width:175,
     backgroundColor:'#FEA3AA',
     paddingTop:0,
     height:230,

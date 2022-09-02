@@ -35,7 +35,7 @@ const Main = () => {
           <TouchableOpacity
             style={styles.loginBtn}
             onPress={() => {
-              navigation.navigate("MoodDashboard");
+              navigation.navigate("Home");
             }}
           >
             <Text style={styles.loginText}>SIGN UP</Text>

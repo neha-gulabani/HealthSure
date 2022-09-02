@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Checkbox } from "react-native-paper";
-import { auth } from "../firebase";
+import { auth } from "../";
 import Axios from "axios";
 
 const SignUp = () => {
@@ -23,28 +23,32 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
   let checked;
-  
+  const [check, setChecked] = React.useState(false);
+
   // Firebase authentication
   const handleSignUp = () => {
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then(userCredentials => {
+      .then((userCredentials) => {
         const user = userCredentials.user;
         console.log(user.email);
       })
-      .catch(error => alert(error.message))
-  }
-  
+      .catch((error) => alert(error.message));
+  };
+
   // Store user to backend database
   const signed = async () => {
     console.log(firstname);
-    await Axios.post("http://192.168.18.6:3001/signed", {
-      firstname: firstname,
-      lastname: lastname,
-      username: username,
-      password: password,  
-      email: email,
-      contact: contact},
+    await Axios.post(
+      "http://192.168.18.6:3001/signed",
+      {
+        firstname: firstname,
+        lastname: lastname,
+        username: username,
+        password: password,
+        email: email,
+        contact: contact,
+      },
       {
         headers: {
           "Content-Type": "application/json",
@@ -56,10 +60,10 @@ const SignUp = () => {
         if (data == "True") {
           navigation.navigate("Home");
         }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const navigation = useNavigation();
@@ -131,9 +135,9 @@ const SignUp = () => {
           </View>
           <View style={styles.checkboxContainer}>
             <Checkbox
-              status={checked ? "checked" : "unchecked"}
+              status={check ? "checked" : "unchecked"}
               onPress={() => {
-                setChecked(!checked);
+                setChecked(!check);
               }}
             />
             <Text style={styles.label}>

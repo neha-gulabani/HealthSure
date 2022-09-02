@@ -1,18 +1,14 @@
-import React,{useState} from "react";
-import { StyleSheet, Text, View,ScrollView } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { useNavigation, useTheme } from "@react-navigation/native";
 import TopNav from "../components/topnav";
 import { Dimensions } from "react-native";
-import {
-  LineChart,
-  ProgressChart,
-} from "react-native-chart-kit";
-import{Calendar,} from 'react-native-calendars';
-
+import { LineChart, ProgressChart } from "react-native-chart-kit";
+import { Calendar } from "react-native-calendars";
 
 function* yLabel() {
-  yield* ['Anger', 'Fear', 'Disgust', 'Sad','Surprise','Happy'];
-};
+  yield* ["Anger", "Fear", "Disgust", "Sad", "Surprise", "Happy"];
+}
 
 let Mood = new Array(6);
 Mood[1] = "Anger";
@@ -57,60 +53,59 @@ const MoodReport = () => {
     decimalPlaces: 2,
     color: (opacity = 1, _index) => `rgba(255,255,255,${opacity})`,
   };
-  const [current,setCurrent]=useState('2022-08-04')
+  const [current, setCurrent] = useState("2022-08-04");
   return (
     <View style={styles.container}>
       <TopNav />
       {/*Title Box*/}
       <ScrollView>
-      <View style={styles.titleBox}>
-        <Text style={styles.title}>Your progress charts</Text>
-      </View>
-      {/*Line chart*/}
-      <Text style={styles.subtitle}>Weekly Mood Chart</Text>
-      <View>
-        <LineChart
-          data={data}
-          segments={5}
-          width={320}
-          height={200}
-          style={{ alignSelf: "center" }}
-          formatYLabel={() => yLabelIterator.next().value}
-          chartConfig={{
-            backgroundColor: "white",
-            backgroundGradientFrom: "white",
-            backgroundGradientTo: "white",
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+        <View style={styles.titleBox}>
+          <Text style={styles.title}>Your progress charts</Text>
+        </View>
+        {/*Line chart*/}
+        <Text style={styles.subtitle}>Weekly Mood Chart</Text>
+        <View>
+          <LineChart
+            data={data}
+            segments={5}
+            width={320}
+            height={200}
+            style={{ alignSelf: "center" }}
+            formatYLabel={() => yLabelIterator.next().value}
+            chartConfig={{
+              backgroundColor: "white",
+              backgroundGradientFrom: "white",
+              backgroundGradientTo: "white",
+              color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+              labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            }}
+          />
+        </View>
+        {/*Progress chart*/}
+        <Text style={styles.subtitle}>Progress Chart</Text>
+        <ProgressChart
+          data={data2}
+          width={Dimensions.get("screen").width}
+          height={220}
+          strokeWidth={16}
+          radius={32}
+          chartConfig={chartConfig}
+          hideLegend={false}
+          withCustomBarColorFromData={true}
+        />
+        <Text style={styles.subtitle}>Month in pixels</Text>
+        <Calendar
+          current={current}
+          key={current}
+          disableMonthChange={true}
+          markedDates={{
+            "2022-07-04": { selected: true, selectedColor: "orange" },
+            "2022-08-01": { selected: true, selectedColor: "purple" },
+            "2022-08-02": { selected: true, selectedColor: "blue" },
+            "2022-08-03": { selected: true, selectedColor: "yellow" },
+            "2022-08-04": { selected: true, selectedColor: "green" },
           }}
         />
-      </View>
-      {/*Progress chart*/}
-      <Text style={styles.subtitle}>Progress Chart</Text>
-      <ProgressChart
-        data={data2}
-        width={Dimensions.get("screen").width}
-        height={220}
-        strokeWidth={16}
-        radius={32}
-        chartConfig={chartConfig}
-        hideLegend={false}
-        withCustomBarColorFromData={true}
-      />
-      <Text style={styles.subtitle}>Month in pixels</Text>
-      <Calendar
-            current={current}
-            key={current}
-            disableMonthChange={true}
-            markedDates={{
-              '2022-07-04':{selected:true,selectedColor:'orange'},
-              '2022-08-01':{selected:true,selectedColor:'purple'},
-              '2022-08-02':{selected:true,selectedColor:'blue'},
-              '2022-08-03':{selected:true,selectedColor:'yellow'},
-              '2022-08-04':{selected:true,selectedColor:'green'},
-
-            }}
-      />
       </ScrollView>
     </View>
   );
@@ -145,12 +140,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     paddingTop: 20,
   },
-  titlemonth:{
+  titlemonth: {
     fontFamily: "Monospace",
     fontSize: 28,
     color: "#000000",
     alignSelf: "center",
     paddingBottom: 20,
     paddingTop: 20,
-  }
+  },
 });

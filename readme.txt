@@ -44,3 +44,10 @@ Description: 		Added logout function
 Section affected: 	settings.js
 Changes made by: 	Shreya
 Approved by: 		Shreya
+
+Version 1.07
+Revision date: 		3 September 2022
+Description: 		Fixed issues with history.js
+Section affected: 	history.js
+Changes made by: 	Neha
+Approved by: 		Neha

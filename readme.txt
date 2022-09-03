@@ -51,3 +51,20 @@ Description: 		Fixed issues with history.js
 Section affected: 	history.js
 Changes made by: 	Neha
 Approved by: 		Neha
+
+Dependencies/ libraries used
+React navigation
+React Native paper 
+React Native vector-icons
+React Native gifted chat 
+React Native dialogFlow_V2
+React Native voice
+React Native chart kit
+React Native calendars
+Axios 
+Moment 
+Firebase
+Cors
+Mysql
+Node
+Express
